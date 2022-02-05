@@ -1,0 +1,40 @@
+Host Discovery - Ping Sweep
+nmap -sn 10.50.96.0/24
+
+Host Discovery - Ping Sweep
+nmap -n -sn -PS22,135,443,445 10.50.96.0/24
+
+DNS Discovery
+nmap -sS -sU -p53 -n 10.50.96.0/24
+
+Live Hosts
+fping -a -g 192.168.1.0/24 2>/dev/null
+
+sudo nmap --script=vuln 10.10.10.10
+sudo nmap --script smb-vuln-ms17-010.nse -p445 10.10.10.10
+sudo nmap --script=smb-vuln-ms08-067.nse -p445 10.10.10.10
+
+sudo nmap --script smb-enum-shares -p 445 192.168.1.6 
+sudo nmap --script smb-enum-users -p 445 192.168.1.6 
+##much more information than -O scan
+sudo nmap --script smb-os-discovery -p 445 192.168.1.6 
+sudo nmap -O -p 445 192.168.1.6
+
+##authentication base attack
+sudo nmap --script auth 192.168.1.1                                                       
+
+## discover info regarding target machine by default
+sudo nmap --script default 192.168.1.6                                    
+
+>> nslookup
+>> server 10.10.10.10
+>> set q=NS
+>> foocampus.com              
+
+>> set q=MX
+
+Dig Command
+>> dig @10.10.10.10 foocampus.com -t AXFR +nocookie
+
+Host Command
+>> host -t axfr foocampus.com 10.10.10.10
